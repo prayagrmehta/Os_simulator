@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AT, BT, PT Input</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        #ok{
+            width: 100%;
+            height: 100%;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+          }
+          /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f100; 
+          }
+           
+          /* Handle */
+          ::-webkit-scrollbar-thumb {
+            background: white; 
+          }
+          
+          /* Handle on hover */
+          ::-webkit-scrollbar-thumb:hover {
+            background: #01d0ff; 
+          }
+        .main{
+            box-shadow: black 0px 0px 13px;
+           
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
+            width: 60%;
+            height: 70%;
+            position: fixed;
+            left: 20%;
+            
+            right: 20%;
+            top: 15%;
+            bottom: 15%;
+            z-index: 10;
+            justify-content: center;
+            overflow-y:scroll;
+        }
+        .enter{
+            text-align: center;
+            color: white;
+            padding-top: 20px;
+        }
+        .val{
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            font-size:18px;
+        }
+        input{
+            width: 50px;
+            margin-right: 10px;
+        }
+        button{
+            width: 80px;
+            height:25px;
+            font-weight: bold;
+        }
+        button:hover{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+        <img src="/static/Image/third.jpg" alt="not found" id="ok">
+    </div>
+    <div class="main">
+    <div class="enter">
+        <h1>Enter Arrival Time, Burst Time, and Priority for Each Process</h1>
+    </div>
+    <div class="val">
+    <form action="/calculate" method="post" >
+        <input type="hidden" name="total_processes" value="{{ total_processes }}">
+        {% for i in range(total_processes) %}
+            <label for="at_{{ i }}">Arrival Time for Process {{ i+1 }}:</label>
+            <input type="number" id="at_{{ i }}" name="at_{{ i }}" required>
+            <label for="bt_{{ i }}">Burst Time for Process {{ i+1 }}:</label>
+            <input type="number" id="bt_{{ i }}" name="bt_{{ i }}" required>
+            <label for="pt_{{ i }}">Priority for Process {{ i+1 }}:</label>
+            <input type="number" id="pt_{{ i }}" name="pt_{{ i }}" required><br><br>
+        {% endfor %}
+        <button type="submit">Calculate</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

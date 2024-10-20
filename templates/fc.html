@@ -1,0 +1,89 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCFS Disk Scheduling Result</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .main{
+            box-shadow: black 0px 0px 13px;
+           
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
+            width: 60%;
+            height: 70%;
+            position: fixed;
+            left: 20%;
+            justify-items:center;
+            right: 20%;
+            top: 15%;
+            bottom: 15%;
+            z-index: 10;
+        }
+        .main2{
+            position: relative;
+            top:15%;
+            left: 10%;
+            width:80%;
+            right:10%;
+            color: aliceblue;
+            text-align: left;
+        }
+        h1{
+            margin-bottom: 50px;
+        }
+        p{
+            margin-bottom: 30px;
+        }
+        .p2{
+            margin-top: 30px;
+        }
+        .button{
+            width: 80px;
+            height:25px;
+            font-weight: bold;
+        }
+        .button:hover{
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="img">
+        <img src="/static/Image/third.jpg" alt="Null">
+    </div>
+    <div class="main">
+        <div class="main2">
+    <h1>FCFS Disk Scheduling Result</h1>
+    <p>Start Position: {{ start_position }}</p>
+    <p>Sequence: {{ sequence}}</p>
+        Initial Position (<b>{{ start_position }}</b>) 
+        {% for request, diff in zipped_data %}
+            ----- (Diff : <b>{{ diff }}</b>) ----> Request: <b>{{ request }}</b>
+        {% endfor %}
+    <p class="p2">Total Head Movement: {{ total_head_movement }}</p>
+</div>
+</div>
+</body>
+</html>

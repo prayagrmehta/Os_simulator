@@ -1,0 +1,128 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCFS Disk Scheduling Algorithm</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+          }
+          /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f100; 
+          }
+           
+          /* Handle */
+          ::-webkit-scrollbar-thumb {
+            background: white; 
+          }
+          
+          /* Handle on hover */
+          ::-webkit-scrollbar-thumb:hover {
+            background: #01d0ff; 
+          }
+        .main{
+            box-shadow: black 0px 0px 13px;
+           
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
+            width: 60%;
+            height: 70%;
+            position: fixed;
+            left: 20%;
+            justify-items:center;
+            right: 20%;
+            top: 15%;
+            bottom: 15%;
+            z-index: 10;
+            overflow-y: scroll;
+        }
+        form{
+            position: relative;
+            width: 60%;
+            left:20%;
+            top:15%;
+            height: 50%;
+            text-align: left;
+            color:aliceblue;
+        
+        }
+        h1{
+            margin-bottom: 50px;
+        }
+        input{
+            margin-bottom: 30px;
+        }
+        .button{
+            width: 80px;
+            height:25px;
+            font-weight: bold;
+        }
+        .button:hover{
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <div class="img">
+        <img src="/static/Image/third.jpg" alt="Null">
+    </div>
+    <div class="main">
+    
+    <form action="/fcfs" method="POST">
+        <h1>FCFS Disk Scheduling Algorithm</h1>
+        <label for="start_position">Start Position:</label>
+        <input type="number" id="start_position" name="start_position" required><br>
+        <label for="num_requests">Number of Requests:</label>
+        <input type="number" id="num_requests" name="num_requests" required>
+        <div id="requests">
+            <!-- Request fields will be dynamically generated here -->
+        </div>
+        <input type="submit" value="Submit" class="button">
+    </form>
+    </div>
+
+    <script>
+        // Function to dynamically generate request input fields
+        function generateRequestFields() {
+            var numRequests = document.getElementById('num_requests').value;
+            var requestsDiv = document.getElementById('requests');
+            requestsDiv.innerHTML = ''; // Clear previous fields
+            for (var i = 0; i < numRequests; i++) {
+                var input = document.createElement('input');
+                input.type = 'number';
+                input.name = 'request_' + i;
+                input.placeholder = 'Request ' + (i + 1);
+                input.required = true;
+                requestsDiv.appendChild(input);
+                requestsDiv.appendChild(document.createElement('br'));
+            }
+        }
+
+        // Generate request fields when the number of requests is changed
+        document.getElementById('num_requests').addEventListener('change', generateRequestFields);
+    </script>
+</body>
+</html>

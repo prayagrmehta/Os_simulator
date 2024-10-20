@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Output</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        #ok{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            box-shadow: black 0px 0px 13px;
+           
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
+            width: 60%;
+            height: 70%;
+            position: fixed;
+            left: 20%;
+            
+            right: 20%;
+            top: 15%;
+            bottom: 15%;
+            z-index: 10;
+            text-align: center;
+            /* overflow:scroll; */
+        }
+        .enter{
+            color: white;
+            margin-top: 40px;
+        }
+        .val{
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+        input{
+            width: 50px;
+            margin-right: 10px;
+        }
+        
+        .tbl{
+            justify-content: center;
+          
+            margin-top: 30px;
+        }
+        table{
+            position:relative;
+            left:10%;
+            right:10%;
+            width:80%;            background-color: aliceblue;
+        }
+        button{
+            width: 140px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        button:hover{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+    <img src="/static/Image/third.jpg" alt="not found" id="ok">
+    </div>
+    <div class="main">
+        <div class="enter"><h1>Output</h1></div>
+        <div class="tbl">
+    <table border="3">
+        <tr>
+            <th>Process ID</th>
+            <th>Arrival Time</th>
+            <th>Burst Time</th>
+            <th>Priority</th>
+            <th>Waiting Time</th>
+            <th>Turnaround Time</th>
+            <th>Completion Time</th>
+        </tr>
+        {% for process in processes %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ process.at }}</td>
+            <td>{{ process.bt }}</td>
+            <td>{{ process.pt }}</td>
+            <td>{{ process.wt }}</td>
+            <td>{{ process.tat }}</td>
+            <td>{{ process.ct }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <form action="/redirect" method="post">
+        <button type="submit" name="redirect_button" value="ganttchart">Go to Gantt Chart</button>
+        <button type="submit" name="redirect_button" value="oshomepage">Go to OS Homepage</button>
+    </form>
+</div>
+</body>
+</html>

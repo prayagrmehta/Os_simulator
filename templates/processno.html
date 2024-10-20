@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process Number Input</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        body{
+
+        }
+        .img{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        #ok{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            box-shadow: black 0px 0px 13px;
+           
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
+            width: 60%;
+            height: 70%;
+            position: fixed;
+            left: 20%;
+        
+            right: 20%;
+            top: 15%;
+            bottom: 15%;
+            z-index: 10;
+        }
+        .enter{
+            position:relative;
+            top:20%;
+            left:27%;
+            color:white;
+        }
+        .work{
+            position:relative;
+            top:38%;
+            left:28%;
+            color:white;
+        }
+        label{
+            margin-left:30px;
+            font-size:20px;
+        }
+        input{
+            margin-left:20px;
+            width:60px;
+            background:linear-gradient(270deg, black, white);
+        }
+        button{
+            margin-left:170px;
+            margin-top:40px;
+            width:65px;
+            height:20px;
+            font-weight:bold;
+        }
+        button:hover{
+            background-color:black;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+        <img src="/static/Image/third.jpg" alt="not found" id="ok">
+    </div>
+<div class="main">
+        
+    <div class="enter">
+        <h1>Enter the Number of Processes</h1>
+    </div>
+    <div class="work">
+        <form action="/atbtctinput" method="post" >
+            <label for="total_processes">Total Number of Processes:</label>
+            <input type="number" id="total_processes" name="total_processes" required>
+            <br><br>
+        <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
