@@ -107,22 +107,24 @@ def ganttchart():
     return render_template("ganttchart.html", gan_chart=gantt_chart)
 
 
-
+@os_app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
 @os_app.route("/prayag")
 def prayag():
-    return render_template("yash.html")
+    return render_template("prayag.html")
 @os_app.route("/yash")
 def yash():
     return render_template("yash.html")
 @os_app.route("/manav")
 def manav():
-    return render_template("yash.html")
+    return render_template("manav.html")
 @os_app.route("/bhargav")
 def bhargav():
-    return render_template("yash.html")
+    return render_template("bhargav.html")
 @os_app.route("/akshat")
 def akshat():
-    return render_template("yash.html")
+    return render_template("akshat.html")
 # ---------------------------------------------------------semaphore--------------------------------------------------#
 class Operation:
     def __init__(self, type, duration, status):
