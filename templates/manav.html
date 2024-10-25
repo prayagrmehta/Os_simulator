@@ -3,9 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manav Mavani</title>
+    <title>Manav Mavani - Frontend Developer</title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f100; 
+        }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: white; 
+        }
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #01d0ff; 
+        }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .img {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        #ok {
+            width: 100%;
+            height: 100%;
+        }
+        .main {
+            padding-top: 50px;
+            z-index: 5;
+        }
+        .com {
+            box-shadow: black 0px 0px 13px;
+            margin-bottom: 100px;
+            border-radius: 30px; 
+            background-color: rgba(11, 12, 15, 0.273);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* for chrome */
+            position: relative;
+            left: 20%;
+            right: 20%;
+            width: 60%;
+            height: 500px;
+            display: flex;
+            text-align: center;
+        }
+        .intro {
+            position: relative;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .sim {
+            padding-top: 75px;
+            position: relative;
+            width: 35%;
+            color: rgb(216, 188, 188);
+        }
+        .pimg {
+            position: relative;
+            width: 60%;
+            height: 225px;
+            border-radius: 10px;
+        }
+        p {
+            font-size: 20px;
+        }
+        .n {
+            margin-top: 20px;
+        }
+        .line {
+            position: relative;
+            width: 0.5%;
+            top: 6%;
+            bottom: 6%;
+            height: 88%;
+            background-color: rgb(22, 22, 32);
+        }
+        .self {
+            position: relative;
+            top: 6%;
+            bottom: 6%;
+            width: 62.5%;
+            height: 88%;
+            text-align: left;
+            padding-left: 25px;
+            padding-right: 15px;
+            font-size: 17px;
+            color: rgb(216, 188, 188);
+        }
+        .icon {
+            padding-top: 25%;
+            font-size: 25px;
+            justify-content: space-evenly;
+        }
+        .ico {
+            color: beige;
+            margin-left: 6px;
+            margin-right: 6px;
+            font-size: 30px;
+        }
+        .ico:hover {
+            color: red;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body background="BG.jpeg">
-    
+<body>
+    <div class="img">
+        <img src="/static/Image/third.jpg" alt="not found" id="ok">
+    </div>
+    <div class="main">
+        <div class="intro">
+            <h1>Manav Mavani - Frontend Developer</h1>
+        </div>
+        <div class="com">
+            <div class="imgandname sim">
+                <div>
+                    <img src="/static/Image/manav.jpg" alt="not found" class="pimg">
+                    <p class="n">--Manav Mavani--</p>
+                </div>
+                <div class="icon">
+                    <a href="https://www.instagram.com/manav_mavani/" class="ico"><ion-icon name="logo-instagram" class="ico"></ion-icon></a>             
+                    <a href="https://github.com/ManavMavani" class="ico"><ion-icon name="logo-github" class="ico"></ion-icon></a> 
+                    <a href="" class="ico"><ion-icon name="logo-facebook" class="ico"></ion-icon></a>
+                    <a href="https://www.linkedin.com/in/manav-mavani/" class="ico"><ion-icon name="logo-linkedin" class="ico"></ion-icon></a>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="self">
+                <p>Roll-no: 22BCP290</p>
+                <br>
+                <p>Group: 8</p>
+                <br>
+                <p>Work: Frontend Development, Flask, Algorithms</p>
+                <br>
+                <p>Self: Manav Mavani is a passionate web developer and algorithm enthusiast with extensive experience in frontend technologies. He has contributed to various projects by developing interactive and user-friendly web interfaces using HTML, CSS, while efficiently integrating Flask for backend services. His solid understanding of algorithms and commitment to performance optimization enhance the robustness and scalability of the web applications he works on.</p>
+                <br>
+            </div>
+        </div>
+    </div>
+    <script src="/static/logic.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
