@@ -19,7 +19,7 @@ gantt_chart = []
 
 @os_app.route("/")
 def home():
-    return render_template("homepage.html")
+    return render_template("home.html")
 
 @os_app.route('/process_no')
 def process_no():

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Simulator</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        header {
+            background: #2a4365; /* Navy Blue */
+            color: #f4f5f7;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        /* Main Section */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Individual Cards */
+        .card {
+            flex: 1;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(42, 67, 101, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            color: #2a4365; /* Navy Blue */
+            font-size: 1.5rem;
+            margin: 15px 0;
+        }
+
+        .card p {
+            color: #5c6975; /* Muted Gray-Blue */
+            margin: 10px 20px;
+        }
+
+        .card button {
+            background: #2a4365; /* Navy Blue */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .card button:hover {
+            background: #1f334d; /* Darker Navy */
+            transform: scale(1.05);
+        }
+
+        /* Footer Section */
+        footer {
+            background: #2a4365; /* Navy Blue */
+            color: #f4f5f7;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: #b3c1d1; /* Light Blue Accent */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>OS Simulator</h1>
+        <p>Simulate and learn about essential Operating System algorithms in a modern, user-friendly interface.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- FCFS Card -->
+        <div class="card">
+            <img src="static/Image/fcfs.jpg" alt="FCFS Scheduler">
+            <h3>FCFS Scheduler</h3>
+            <p>Simulate the First-Come-First-Serve scheduling algorithm with intuitive inputs.</p>
+            <form action="{{ url_for('process_no') }}" method="get">
+                <button type="submit">Start Simulation</button>
+            </form>
+        </div>
+
+        <!-- Semaphore Card -->
+        <div class="card">
+            <img src="static/Image/semaphore.jpg" alt="Semaphore">
+            <h3>Semaphore</h3>
+            <p>Simulate the Reader-Writer problem using semaphore mechanisms.</p>
+            <form action="{{ url_for('semaphore') }}" method="get">
+                <button type="submit">Start Simulation</button>
+            </form>
+        </div>
+
+        <!-- LRU Card -->
+        <div class="card">
+            <img src="static/Image/LRU.jpg" alt="LRU Algorithm">
+            <h3>LRU Algorithm</h3>
+            <p>Explore the Least Recently Used (LRU) page replacement algorithm with step-by-step visualizations.</p>
+            <form action="{{ url_for('LRU') }}" method="get">
+                <button type="submit">Start Simulation</button>
+            </form>
+        </div>
+
+        <!-- Priority Scheduler Card -->
+        <div class="card">
+            <img src="static/Image/priority.jpg" alt="Priority Scheduler">
+            <h3>Priority Scheduler</h3>
+            <p>Learn and simulate process scheduling based on priority levels.</p>
+            <form action="{{ url_for('FCFSD') }}" method="get">
+                <button type="submit">Start Simulation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 <a href="#">OS Simulator Team</a>. All Rights Reserved.</p>
+        <p>Crafted with care to enhance your learning experience.</p>
+    </footer>
+</body>
+</html>
