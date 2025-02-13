@@ -1,106 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AT, BT, PT Input</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Scheduling Input</title>
     <style>
-        *{
-            padding: 0;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .img{
-            position: fixed;
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: cyan;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            height: 100%;
-            z-index: 5;
         }
-        #ok{
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             width: 100%;
-            height: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
         }
-        ::-webkit-scrollbar {
-            width: 5px;
-          }
-          /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f100; 
-          }
-           
-          /* Handle */
-          ::-webkit-scrollbar-thumb {
-            background: white; 
+
+        .process-label {
+            font-size: 16px;
+            font-weight: bold;
+            width: 100px; /* Fixed width to align properly */
+            text-align: left;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(0, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            transform: scale(1.07);
+            box-shadow: 0px 4px 12px rgba(0, 255, 255, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .input-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .process-label {
+                width: 100%;
+                text-align: left;
+            }
+
+            input {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+
+        .backdoor-button {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            right: 10px;
+            display: inline-block;
           }
           
-          /* Handle on hover */
-          ::-webkit-scrollbar-thumb:hover {
-            background: #01d0ff; 
+          .door-icon {
+            width: 35px; /* Very small size */
+            height: 35px;
+            transition: transform 0.2s ease-in-out;
           }
-        .main{
-            box-shadow: black 0px 0px 13px;
-           
-            border-radius: 30px; 
-            background-color: rgba(11, 12, 15, 0.273);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
-            width: 60%;
-            height: 70%;
-            position: fixed;
-            left: 20%;
-            
-            right: 20%;
-            top: 15%;
-            bottom: 15%;
-            z-index: 10;
-            justify-content: center;
-            overflow-y:scroll;
-        }
-        .enter{
-            text-align: center;
-            color: white;
-            padding-top: 20px;
-        }
-        .val{
-            text-align: center;
-            color: white;
-            margin-top: 60px;
-            font-size:18px;
-        }
-        input{
-            width: 50px;
-            margin-right: 10px;
-        }
-        button{
-            width: 80px;
-            height:25px;
-            font-weight: bold;
-        }
-        button:hover{
-            background-color: black;
-            color: white;
-        }
+          
+          .door-icon:hover {
+            transform: scale(1.1);
+          }
     </style>
 </head>
 <body>
-    <div class="img">
-        <img src="/static/Image/third.jpg" alt="not found" id="ok">
+    <a href="{{ url_for('process_no') }}" class="backdoor-button">
+        <abbr title="Go to backpage"><img src="/static/Image/opened-door-aperture.png" alt="Backdoor" class="door-icon"></abbr>
+    </a>
+
+    <div class="container">
+        <h1>Enter Process Details</h1>
+        <form action="/calculate" method="post">
+            <input type="hidden" name="total_processes" value="{{ total_processes }}">
+            {% for i in range(total_processes) %}
+                <div class="input-row">
+                    <div class="process-label">Process {{ i+1 }}:</div>
+                    <input type="number" id="at_{{ i }}" name="at_{{ i }}" placeholder="Enter Arrival Time" required>
+                    <input type="number" id="bt_{{ i }}" name="bt_{{ i }}" placeholder="Enter Burst Time" required>
+                    <input type="number" id="pt_{{ i }}" name="pt_{{ i }}" placeholder="Enter Priority" required>
+                </div>
+            {% endfor %}
+            <button type="submit">Calculate</button>
+        </form>
     </div>
-    <div class="main">
-    <div class="enter">
-        <h1>Enter Arrival Time, Burst Time, and Priority for Each Process</h1>
-    </div>
-    <div class="val">
-    <form action="/calculate" method="post" >
-        <input type="hidden" name="total_processes" value="{{ total_processes }}">
-        {% for i in range(total_processes) %}
-            <label for="at_{{ i }}">Arrival Time for Process {{ i+1 }}:</label>
-            <input type="number" id="at_{{ i }}" name="at_{{ i }}" required>
-            <label for="bt_{{ i }}">Burst Time for Process {{ i+1 }}:</label>
-            <input type="number" id="bt_{{ i }}" name="bt_{{ i }}" required>
-            <label for="pt_{{ i }}">Priority for Process {{ i+1 }}:</label>
-            <input type="number" id="pt_{{ i }}" name="pt_{{ i }}" required><br><br>
-        {% endfor %}
-        <button type="submit">Calculate</button>
-    </form>
-</div>
-</div>
+
 </body>
 </html>

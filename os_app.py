@@ -108,21 +108,10 @@ def ganttchart():
 
 
 
-@os_app.route("/prayag")
-def prayag():
-    return render_template("yash.html")
-@os_app.route("/yash")
-def yash():
-    return render_template("yash.html")
-@os_app.route("/manav")
-def manav():
-    return render_template("yash.html")
-@os_app.route("/bhargav")
-def bhargav():
-    return render_template("yash.html")
-@os_app.route("/akshat")
-def akshat():
-    return render_template("yash.html")
+@os_app.route("/team")
+def team():
+    return render_template("team.html")
+
 # ---------------------------------------------------------semaphore--------------------------------------------------#
 class Operation:
     def __init__(self, type, duration, status):

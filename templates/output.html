@@ -1,111 +1,199 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Output</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .img{
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-        }
-        #ok{
-            width: 100%;
-            height: 100%;
-        }
-        .main{
-            box-shadow: black 0px 0px 13px;
-           
-            border-radius: 30px; 
-            background-color: rgba(11, 12, 15, 0.273);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
-            width: 60%;
-            height: 70%;
-            position: fixed;
-            left: 20%;
-            
-            right: 20%;
-            top: 15%;
-            bottom: 15%;
-            z-index: 10;
-            text-align: center;
-            /* overflow:scroll; */
-        }
-        .enter{
-            color: white;
-            margin-top: 40px;
-        }
-        .val{
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-        }
-        input{
-            width: 50px;
-            margin-right: 10px;
-        }
-        
-        .tbl{
+
+        body {
+            display: flex;
             justify-content: center;
-          
-            margin-top: 30px;
-        }
-        table{
-            position:relative;
-            left:10%;
-            right:10%;
-            width:80%;            background-color: aliceblue;
-        }
-        button{
-            width: 140px;
-            font-weight: bold;
-            margin-top: 30px;
-        }
-        button:hover{
-            background-color: black;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
             color: white;
         }
+
+        .img {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #ok {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .main {
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 80%;
+            max-width: 900px;
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 26px;
+            color: black;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tbl {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.57);
+            border-radius: 10px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            color: black;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.43);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: rgba(7, 7, 7, 0.2);
+            transition: 0.3s ease;
+        }
+
+        button {
+            width: 180px;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 15px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            transform: scale(1.05);
+            box-shadow: 0px 4px 12px rgba(0, 255, 255, 0.3);
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            .main {
+                width: 95%;
+                padding: 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .backdoor-button {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            right: 10px;
+            display: inline-block;
+          }
+          
+          .door-icon {
+            width: 35px; /* Very small size */
+            height: 35px;
+            transition: transform 0.2s ease-in-out;
+          }
+          
+          .door-icon:hover {
+            transform: scale(1.1);
+          }
     </style>
 </head>
 <body>
+    <a href="{{ url_for('home') }}" class="backdoor-button">
+        <abbr title="Return to Homepage"><img src="/static/Image/opened-door-aperture.png" alt="Backdoor" class="door-icon"></abbr>
+    </a>
+
     <div class="img">
-    <img src="/static/Image/third.jpg" alt="not found" id="ok">
+        <img src="/static/Image/third.jpg" alt="Background Image" id="ok">
     </div>
+
     <div class="main">
-        <div class="enter"><h1>Output</h1></div>
+        <h1>Output</h1>
         <div class="tbl">
-    <table border="3">
-        <tr>
-            <th>Process ID</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Priority</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
-            <th>Completion Time</th>
-        </tr>
-        {% for process in processes %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ process.at }}</td>
-            <td>{{ process.bt }}</td>
-            <td>{{ process.pt }}</td>
-            <td>{{ process.wt }}</td>
-            <td>{{ process.tat }}</td>
-            <td>{{ process.ct }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            <table border="0">
+                <tr>
+                    <th>Process ID</th>
+                    <th>Arrival Time</th>
+                    <th>Burst Time</th>
+                    <th>Priority</th>
+                    <th>Waiting Time</th>
+                    <th>Turnaround Time</th>
+                    <th>Completion Time</th>
+                </tr>
+                {% for process in processes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ process.at }}</td>
+                    <td>{{ process.bt }}</td>
+                    <td>{{ process.pt }}</td>
+                    <td>{{ process.wt }}</td>
+                    <td>{{ process.tat }}</td>
+                    <td>{{ process.ct }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <form action="/redirect" method="post">
+            <button type="submit" name="redirect_button" value="ganttchart">Go to Gantt Chart</button>
+        </form>
     </div>
-    <form action="/redirect" method="post">
-        <button type="submit" name="redirect_button" value="ganttchart">Go to Gantt Chart</button>
-        <button type="submit" name="redirect_button" value="oshomepage">Go to OS Homepage</button>
-    </form>
-</div>
+
 </body>
 </html>

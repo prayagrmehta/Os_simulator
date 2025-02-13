@@ -1,93 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Process Number Input</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Scheduling - Process Input</title>
     <style>
-        *{
-            padding:0;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        body{
 
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            padding: 20px;
         }
-        .img{
-            position: fixed;
+
+        .container {
+            width: 90%;
+            max-width: 5000px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+            text-align: left;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: cyan;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #f1f1f1;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            animation: fadeIn 1s ease-in-out;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input {
             width: 100%;
-            height: 100%;
-            z-index: 5;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            transition: 0.3s;
         }
-        #ok{
+
+        input:focus {
+            outline: none;
+            background: rgba(0, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px;
             width: 100%;
-            height: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .main{
-            box-shadow: black 0px 0px 13px;
-           
-            border-radius: 30px; 
-            background-color: rgba(11, 12, 15, 0.273);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px) ;/* for chrome */
-            width: 60%;
-            height: 70%;
-            position: fixed;
-            left: 20%;
-        
-            right: 20%;
-            top: 15%;
-            bottom: 15%;
-            z-index: 10;
+
+        button:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff);
+            transform: scale(1.07);
+            box-shadow: 0px 4px 12px rgba(0, 255, 255, 0.3);
         }
-        .enter{
-            position:relative;
-            top:20%;
-            left:27%;
-            color:white;
+
+        @media (max-width: 500px) {
+            .container, .form-container {
+                width: 95%;
+                padding: 20px;
+            }
         }
-        .work{
-            position:relative;
-            top:38%;
-            left:28%;
-            color:white;
-        }
-        label{
-            margin-left:30px;
-            font-size:20px;
-        }
-        input{
-            margin-left:20px;
-            width:60px;
-            background:linear-gradient(270deg, black, white);
-        }
-        button{
-            margin-left:170px;
-            margin-top:40px;
-            width:65px;
-            height:20px;
-            font-weight:bold;
-        }
-        button:hover{
-            background-color:black;
-            color:white;
-        }
+
+        .backdoor-button {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            right: 10px;
+            display: inline-block;
+          }
+          
+          .door-icon {
+            width: 35px; /* Very small size */
+            height: 35px;
+            transition: transform 0.2s ease-in-out;
+          }
+          
+          .door-icon:hover {
+            transform: scale(1.1);
+          }
     </style>
 </head>
 <body>
-    <div class="img">
-        <img src="/static/Image/third.jpg" alt="not found" id="ok">
+
+    <a href="{{ url_for('home') }}" class="backdoor-button">
+        <abbr title="Return to Homepage"><img src="/static/Image/opened-door-aperture.png" alt="Backdoor" class="door-icon"></abbr>
+    </a>
+
+    <div class="container">
+        <h1>Priority Scheduling</h1>
+        <p>
+            Priority Scheduling is a CPU scheduling algorithm where processes are executed based on their priority.
+            <br><br>
+            <strong>Types:</strong><br>
+            - <b>Preemptive:</b> Higher-priority processes can interrupt lower-priority ones.<br>
+            - <b>Non-Preemptive:</b> Once a process starts, it runs until completion.<br><br>
+            <strong>Advantages:</strong> Ensures critical tasks run first, useful for real-time systems.<br>
+            <strong>Disadvantages:</strong> Low-priority processes may experience starvation.
+        </p>
     </div>
-<div class="main">
-        
-    <div class="enter">
-        <h1>Enter the Number of Processes</h1>
-    </div>
-    <div class="work">
-        <form action="/atbtctinput" method="post" >
+    
+    <div class="form-container">
+        <form action="/atbtctinput" method="post">
             <label for="total_processes">Total Number of Processes:</label>
             <input type="number" id="total_processes" name="total_processes" required>
-            <br><br>
-        <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
-</div>
+
 </body>
 </html>

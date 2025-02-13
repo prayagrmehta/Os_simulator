@@ -37,25 +37,27 @@
             font-size: 1.2rem;
         }
 
-        /* Main Section */
+        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
         }
 
         /* Individual Cards */
         .card {
-            flex: 1;
+            flex: 1 1 calc(50% - 40px); /* Two cards per row for medium screens */
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 400px; /* Ensures cards don't stretch too much */
         }
 
         .card:hover {
@@ -118,6 +120,28 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .card {
+                flex: 1 1 calc(100% - 40px); /* One card per row for small screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .card {
+                flex: 1 1 100%; /* Stack cards on top of each other */
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,15 +153,16 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- FCFS Card -->
+        <!-- Priority Scheduler Card -->
         <div class="card">
-            <img src="static/Image/fcfs.jpg" alt="FCFS Scheduler">
-            <h3>FCFS Scheduler</h3>
-            <p>Simulate the First-Come-First-Serve scheduling algorithm with intuitive inputs.</p>
+            <img src="static/Image/priority.jpg" alt="Priority Scheduler">
+            <h3>Priority Scheduler</h3>
+            <p>Learn and simulate process scheduling based on priority levels.</p>
             <form action="{{ url_for('process_no') }}" method="get">
                 <button type="submit">Start Simulation</button>
             </form>
         </div>
+
 
         <!-- Semaphore Card -->
         <div class="card">
@@ -148,7 +173,6 @@
                 <button type="submit">Start Simulation</button>
             </form>
         </div>
-
         <!-- LRU Card -->
         <div class="card">
             <img src="static/Image/LRU.jpg" alt="LRU Algorithm">
@@ -158,21 +182,21 @@
                 <button type="submit">Start Simulation</button>
             </form>
         </div>
-
-        <!-- Priority Scheduler Card -->
+        <!-- FCFS Card -->
         <div class="card">
-            <img src="static/Image/priority.jpg" alt="Priority Scheduler">
-            <h3>Priority Scheduler</h3>
-            <p>Learn and simulate process scheduling based on priority levels.</p>
+            <img src="static/Image/fcfs.jpg" alt="FCFS Scheduler">
+            <h3>FCFS Scheduler</h3>
+            <p>Simulate the First-Come-First-Serve scheduling algorithm with intuitive inputs.</p>
             <form action="{{ url_for('FCFSD') }}" method="get">
                 <button type="submit">Start Simulation</button>
             </form>
         </div>
+
     </div>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 <a href="#">OS Simulator Team</a>. All Rights Reserved.</p>
+        <p>&copy; 2024 <a href="{{ url_for('team') }}">OS Simulator Team</a>. All Rights Reserved.</p>
         <p>Crafted with care to enhance your learning experience.</p>
     </footer>
 </body>
